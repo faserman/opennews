@@ -3,7 +3,9 @@ import { SET_POSTS } from "./types";
 export type Post = {
   id: string;
   title: string;
-  body: string;
+  poster_path: string;
+  vote_average: string;
+  release_date: string;
 };
 
 export type PostsState = {

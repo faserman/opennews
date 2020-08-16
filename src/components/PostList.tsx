@@ -5,13 +5,13 @@ import { fetchPosts } from '../redux/actions';
 import Post from './Post';
 import { Post as PostType } from '../redux/postsReducer';
 import { RootState } from '../redux/rootReducer';
+import { FlatList } from 'react-native-gesture-handler';
 
 export default () => {
   const dispatch = useDispatch();
   const posts = useSelector<RootState, PostType[]>(
     state => state.posts.fetchedPosts
   );
-  const postList = posts.map((post: any) => <Post post={post} key={post.id} />);
 
   if (!posts.length) {
     return <TouchableOpacity
@@ -24,9 +24,12 @@ export default () => {
   }
 
   return (
-    <View style={styles.postList}>
-      { postList }
-    </View>
+    <FlatList
+      style={styles.postList}
+      keyExtractor={post => post.id.toString()}
+      data={posts}
+      renderItem={({ item }) => <Post post={item} />}
+    />
   )
 }
 
