@@ -3,6 +3,7 @@ import {
   HIDE_LOADER, 
   SHOW_ALERT,
   HIDE_ALERT, 
+  FETCH_POSTS,
   REQUEST_NEW_POSTS } from "./types";
 
 export function showLoader() {
@@ -38,20 +39,6 @@ export function hideAlert() {
 
 export function fetchPosts() {
   return {
-    type: REQUEST_NEW_POSTS
+    type: FETCH_POSTS
   }
-  /*return async dispatch => {
-    try {
-      dispatch(showLoader())
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
-      const json = await response.json();
-      setTimeout(() => {
-        dispatch({ type: FETCH_POST, payload: json })
-        dispatch(hideLoader())
-      }, 500)
-    } catch (e) {
-      dispatch(showAlert('Упс... Что-то пошло не так'))
-      dispatch(hideLoader())
-    }
-  }*/
 }

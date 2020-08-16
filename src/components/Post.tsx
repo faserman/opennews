@@ -1,7 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Post } from '../redux/postsReducer';
 
-export default ({ post }) => {
+type Props = {
+  post: Post;
+}
+
+export default ({ post }: Props) => {
   return (
     <View style={styles.result}>
       <Text style={styles.textResult}>{ post.title }</Text>

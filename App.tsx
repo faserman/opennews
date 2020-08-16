@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './src/redux/rootReducer';
 import { sagaWatcher } from './src/redux/sagas';
+import PostList from './src/components/PostList';
 
 const saga = createSagaMiddleware();
 
@@ -20,7 +21,9 @@ saga.run(sagaWatcher);
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}></View>
+      <View style={styles.container}>
+        <PostList />
+      </View>
     </Provider>
   );
 }
@@ -28,7 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#252526',
     alignItems: 'center',
     justifyContent: 'center',
   },
