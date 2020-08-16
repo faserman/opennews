@@ -1,14 +1,18 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Button } from 'react-native';
 import { Post } from '../redux/postsReducer';
 
 type Props = { 
-  match: any 
+  route: any;
+  navigation: any; 
 };
 
-export default ({ match }: Props) => {
+export default ({ route, navigation }: Props) => {
   return (
-    <Text>ID: {match.params.id}</Text>
+    <View>
+      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Text>ID: {route.params.post.title}</Text>
+    </View>
   )
 }
 

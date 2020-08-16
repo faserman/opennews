@@ -6,9 +6,11 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './src/redux/rootReducer';
 import { sagaWatcher } from './src/redux/sagas';
-import { NativeRouter, Route, Link, RouteComponentProps } from 'react-router-native';
 import PostInfo from './src/components/PostInfo';
 import PostList from './src/components/PostList';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 const saga = createSagaMiddleware();
 
@@ -20,17 +22,23 @@ const store = createStore(rootReducer, compose(
 
 saga.run(sagaWatcher);
 
+const Stack = createStackNavigator();
+
 export default function App() {
   return (
-    <Provider store={store}>
-      <NativeRouter>
-        <View style={styles.container}>
-          <PostList />
-        </View>
-
-        <Route exact path='/' component={PostList} />
-        <Route path='/:id' component={PostInfo} />
-      </NativeRouter>
+    <Provider store= { store } >
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name="PostList" 
+            component={PostList} 
+          />
+          <Stack.Screen 
+            name="PostInfo" 
+            component={PostInfo} 
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }

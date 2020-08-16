@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Link } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
 import { Post } from '../redux/postsReducer';
 
 type Props = {
@@ -8,13 +8,18 @@ type Props = {
 }
 
 export default ({ post }: Props) => {
+
+  const navigation = useNavigation();
+
   return (
-    <Link 
-      to={ `/${post.id}` }
+    <TouchableOpacity 
       style={styles.result}
+      onPress={ () => {
+        navigation.navigate('PostInfo', { post: post });
+      }}
     >
       <Text style={styles.textResult}>{ post.title }</Text>
-    </Link>
+    </TouchableOpacity>
   )
 }
 
