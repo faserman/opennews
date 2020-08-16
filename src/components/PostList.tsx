@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../redux/actions';
@@ -46,3 +46,5 @@ const styles = StyleSheet.create({
   fontSize: 17,
  }
 })
+
+//useEffect()

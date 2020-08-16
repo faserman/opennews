@@ -1,4 +1,4 @@
-export const FETCH_POSTS = 'POST/FETCH_POSTS';
+export const SET_POSTS = 'POST/FETCH_POSTS';
 export const REQUEST_NEW_POSTS = 'POST/REQUEST_NEW_POSTS';
 export const SHOW_LOADER = 'APP/SHOW_LOADER';
 export const HIDE_LOADER = 'APP/HIDE_LOADER';

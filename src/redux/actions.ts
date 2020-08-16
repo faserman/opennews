@@ -3,7 +3,7 @@ import {
   HIDE_LOADER, 
   SHOW_ALERT,
   HIDE_ALERT, 
-  FETCH_POSTS,
+  SET_POSTS,
   REQUEST_NEW_POSTS } from "./types";
 
 export function showLoader() {
