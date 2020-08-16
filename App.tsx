@@ -6,6 +6,8 @@ import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
 import { rootReducer } from './src/redux/rootReducer';
 import { sagaWatcher } from './src/redux/sagas';
+import { NativeRouter, Route, Link, RouteComponentProps } from 'react-router-native';
+import PostInfo from './src/components/PostInfo';
 import PostList from './src/components/PostList';
 
 const saga = createSagaMiddleware();
@@ -21,9 +23,14 @@ saga.run(sagaWatcher);
 export default function App() {
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        <PostList />
-      </View>
+      <NativeRouter>
+        <View style={styles.container}>
+          <PostList />
+        </View>
+
+        <Route exact path='/' component={PostList} />
+        <Route path='/:id' component={PostInfo} />
+      </NativeRouter>
     </Provider>
   );
 }

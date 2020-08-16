@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Link } from 'react-router-native';
 import { Post } from '../redux/postsReducer';
 
 type Props = {
@@ -8,9 +9,12 @@ type Props = {
 
 export default ({ post }: Props) => {
   return (
-    <View style={styles.result}>
+    <Link 
+      to={ `/${post.id}` }
+      style={styles.result}
+    >
       <Text style={styles.textResult}>{ post.title }</Text>
-    </View>
+    </Link>
   )
 }
 

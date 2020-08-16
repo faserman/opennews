@@ -11,8 +11,8 @@ export function* sagaWatcher() {
 function* sagaWorker() {
   try {
     yield put(showLoader());
-    const payload = yield call(fetchPosts);
-    yield put({ type: SET_POSTS, payload })
+    const data = yield call(fetchPosts);
+    yield put({ type: SET_POSTS, payload: data.results })
     yield put(hideLoader());
   } catch (e) {
     //yield put(showAlert('error'));
@@ -21,10 +21,11 @@ function* sagaWorker() {
 
 async function fetchPosts() {
   const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_limit=5'
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY_API}&language=en-US&page=1`
+    /*'https://jsonplaceholder.typicode.com/posts?_limit=5'*/
     );
   const result = await response.json();
-  console.log(result);
+  console.log(result.results);
   return result;
   }
 }
