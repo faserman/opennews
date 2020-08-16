@@ -39,6 +39,6 @@ export function hideAlert() {
 
 export function fetchPosts() {
   return {
-    type: FETCH_POSTS
+    type: REQUEST_NEW_POSTS
   }
 }

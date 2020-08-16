@@ -1,9 +1,9 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-import { FETCH_POSTS } from './types';
+import { FETCH_POSTS, REQUEST_NEW_POSTS } from './types';
 import { showLoader, hideLoader, showAlert } from './actions';
 
 export function* sagaWatcher() {
-  yield takeEvery(FETCH_POSTS, sagaWorker)
+  yield takeEvery(REQUEST_NEW_POSTS, sagaWorker)
 }
 
 function* sagaWorker() {

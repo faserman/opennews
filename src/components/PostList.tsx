@@ -16,7 +16,7 @@ export default () => {
   if (!posts.length) {
     return <TouchableOpacity
       style={styles.button}
-      onPress={() => dispatch(fetchPosts)} >
+      onPress={() => dispatch(fetchPosts())} >
         <Text style={styles.text}>
           fetchedPosts
         </Text>
