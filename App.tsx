@@ -8,7 +8,7 @@ import { rootReducer } from './src/redux/rootReducer';
 import { sagaWatcher } from './src/redux/sagas';
 import PostInfo from './src/components/PostInfo';
 import PostList from './src/components/PostList';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
@@ -29,7 +29,7 @@ export default function App() {
     <Provider store= { store } >
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen 
+          <Stack.Screen
             name="PostList" 
             component={PostList} 
           />
@@ -51,3 +51,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+//style = {styles.container}

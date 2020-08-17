@@ -13,7 +13,11 @@ export default () => {
     state => state.posts.fetchedPosts
   );
 
-  if (!posts.length) {
+  useEffect(() => {
+    () => dispatch(fetchPosts())
+  });
+
+  /*if (!posts.length) {
     return <TouchableOpacity
       style={styles.button}
       onPress={() => dispatch(fetchPosts())} >
@@ -21,7 +25,7 @@ export default () => {
           fetchedPosts
         </Text>
       </TouchableOpacity>
-  }
+  }*/
 
   return (
     <FlatList
