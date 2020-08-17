@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
-import { SET_POSTS, REQUEST_NEW_POSTS } from './types';
-import { showLoader, hideLoader, showAlert } from './actions';
+import { SET_POSTS, REQUEST_NEW_POSTS, SET_LOADED } from './types';
+import { showLoader, hideLoader, showAlert, setLoaded } from './actions';
 
 const KEY_API = '6ef73281904bd40e1c6ce67fc2c4e3d6'
 
@@ -12,8 +12,10 @@ function* sagaWorker() {
   try {
     yield put(showLoader());
     const data = yield call(fetchPosts);
-    yield put({ type: SET_POSTS, payload: data.results })
+    yield put({ type: SET_POSTS, payload: data.results });
+    yield put({ type: SET_LOADED });
     yield put(hideLoader());
+    yield put(setLoaded());
   } catch (e) {
     //yield put(showAlert('error'));
     yield put(hideLoader());
@@ -22,7 +24,6 @@ function* sagaWorker() {
 async function fetchPosts() {
   const response = await fetch(
     `https://api.themoviedb.org/3/movie/top_rated?api_key=${KEY_API}&language=en-US&page=1`
-    /*'https://jsonplaceholder.typicode.com/posts?_limit=5'*/
     );
   const result = await response.json();
   console.log(result.results);

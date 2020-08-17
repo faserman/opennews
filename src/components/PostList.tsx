@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts } from '../redux/actions';
 import Post from './Post';
@@ -12,20 +12,15 @@ export default () => {
   const posts = useSelector<RootState, PostType[]>(
     state => state.posts.fetchedPosts
   );
+  const isLoaded = useSelector<RootState, boolean>(
+    state => state.posts.isLoaded
+  );
 
   useEffect(() => {
-    () => dispatch(fetchPosts())
-  });
-
-  /*if (!posts.length) {
-    return <TouchableOpacity
-      style={styles.button}
-      onPress={() => dispatch(fetchPosts())} >
-        <Text style={styles.text}>
-          fetchedPosts
-        </Text>
-      </TouchableOpacity>
-  }*/
+    if (!isLoaded) {
+      dispatch(fetchPosts());
+    }
+  }, [dispatch, isLoaded]);
 
   return (
     <FlatList
@@ -54,4 +49,3 @@ const styles = StyleSheet.create({
  }
 })
 
-//useEffect()

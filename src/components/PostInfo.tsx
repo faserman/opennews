@@ -2,31 +2,23 @@ import React from 'react';
 import { 
   StyleSheet,
   Text, 
-  View, 
-  TouchableOpacity, 
-  Image, 
-  Button,
+  View,
+  Image,
   ImageBackground
 } from 'react-native';
+import { RouteProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../App';
+import { Post } from '../redux/postsReducer';
+
+type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'PostInfo'>;
 
 type Props = { 
-  route: any;
-  navigation: any; 
+  route: ProfileScreenRouteProp;
 };
 
-type PostInfo = {
-  id: string;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-  vote_average: string;
-  release_date: string;
-  overview: string;
-}
+export default ({ route }: Props) => {
 
-export default ({ route, navigation }: Props) => {
-
-  const post: PostInfo = route.params.post;
+  const post: Post = route.params.post;
   const { 
     title,
     poster_path,

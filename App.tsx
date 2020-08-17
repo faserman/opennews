@@ -1,5 +1,4 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -10,7 +9,7 @@ import PostInfo from './src/components/PostInfo';
 import PostList from './src/components/PostList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { Post } from './src/redux/postsReducer';
 
 const saga = createSagaMiddleware();
 
@@ -22,20 +21,28 @@ const store = createStore(rootReducer, compose(
 
 saga.run(sagaWatcher);
 
-const Stack = createStackNavigator();
+export type RootStackParamList = {
+  PostList: undefined;
+  PostInfo: { post: Post };
+};
+
+const Stack = createStackNavigator<RootStackParamList>();
 
 export default function App() {
+
   return (
     <Provider store= { store } >
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
             name="PostList" 
-            component={PostList} 
+            component={PostList}
+            options={{ title: 'Top rated movie' }}
           />
           <Stack.Screen 
             name="PostInfo" 
-            component={PostInfo} 
+            component={PostInfo}
+            options={{ title: 'Movie info' }}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -43,13 +50,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#252526',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-//style = {styles.container}

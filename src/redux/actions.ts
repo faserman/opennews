@@ -2,9 +2,9 @@ import {
   SHOW_LOADER,
   HIDE_LOADER, 
   SHOW_ALERT,
-  HIDE_ALERT, 
-  SET_POSTS,
-  REQUEST_NEW_POSTS } from "./types";
+  HIDE_ALERT,
+  REQUEST_NEW_POSTS, 
+  SET_LOADED} from "./types";
 
 export function showLoader() {
   return {
@@ -40,5 +40,11 @@ export function hideAlert() {
 export function fetchPosts() {
   return {
     type: REQUEST_NEW_POSTS
+  }
+}
+
+export function setLoaded() {
+  return {
+    type: SET_LOADED,
   }
 }
