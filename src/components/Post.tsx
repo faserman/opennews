@@ -10,7 +10,7 @@ type Props = {
 export default ({ post }: Props) => {
 
   const navigation = useNavigation();
-  const { 
+  const {
     title,
     poster_path,
     vote_average,

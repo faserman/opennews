@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 import { SET_POSTS, REQUEST_NEW_POSTS, SET_LOADED } from './types';
-import { showLoader, hideLoader, showAlert, setLoaded } from './actions';
+import { showLoader, hideLoader } from './actions';
 
 const KEY_API = '6ef73281904bd40e1c6ce67fc2c4e3d6'
 
@@ -15,7 +15,6 @@ function* sagaWorker() {
     yield put({ type: SET_POSTS, payload: data.results });
     yield put({ type: SET_LOADED });
     yield put(hideLoader());
-    yield put(setLoaded());
   } catch (e) {
     //yield put(showAlert('error'));
     yield put(hideLoader());

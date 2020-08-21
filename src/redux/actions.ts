@@ -45,6 +45,6 @@ export function fetchPosts() {
 
 export function setLoaded() {
   return {
-    type: SET_LOADED,
+    type: SET_LOADED
   }
 }
